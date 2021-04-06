@@ -13,4 +13,4 @@ def internet_on():
 if __name__ == "__main__":
     while True:
         if not internet_on():
-            os.system("wifi-connect -o 8001")
+            os.system("sudo wifi-connect -o 8001")
