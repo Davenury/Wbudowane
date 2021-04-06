@@ -1,14 +1,16 @@
-import socket
 import os
+from urllib.request import urlopen
 
 
-def is_connected():
-
-    IPaddress = socket.gethostbyname(socket.gethostname())
-    print(IPaddress)
-    return IPaddress != "127.0.0.1"
+def internet_on():
+    try:
+        response = urlopen('https://www.google.com/', timeout=5)
+        return True
+    except Exception:
+        return False
 
 
 if __name__ == "__main__":
-    if not is_connected():
-        os.system("wifi-connect -o 8001")
+    while True:
+        if not internet_on():
+            os.system("wifi-connect -o 8001")
