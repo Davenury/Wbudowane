@@ -16,7 +16,7 @@ if __name__ == "__main__":
         try:
             if not internet_on():
                 # os.system("sudo wifi-connect -o 8001")
-            pass
+                pass
 
         except Exception:
             break
