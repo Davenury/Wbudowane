@@ -10,10 +10,13 @@ def internet_on():
         return False
 
 
+# Run it only when you'll need to connect to wifi through Balena
 if __name__ == "__main__":
     while True:
         try:
             if not internet_on():
-                os.system("sudo wifi-connect -o 8001")
+                # os.system("sudo wifi-connect -o 8001")
+            pass
+
         except Exception:
             break
