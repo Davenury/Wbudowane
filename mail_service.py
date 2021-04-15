@@ -2,7 +2,8 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
-from local_auth import sender, receiver, password
+from local_auth import sender, password
+from configurationsGetter import get_mail
 import time
 import cv2
 
@@ -23,6 +24,7 @@ def make_photo():
 
 
 def send_message():
+    receiver = get_mail()
     make_photo()
     img_data = open(IMG_NAME, 'rb').read()
     msg = MIMEMultipart()

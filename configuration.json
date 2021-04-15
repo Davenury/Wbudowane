@@ -1,2 +1,5 @@
-
-{"email": "a@a.pl", "net": "TP-Link_C6", "password": "gaskabalbinka"}
+{
+  "email": "a@a.pl",
+  "ssid": "TP-Link_C6",
+  "password": "gaskabalbinka"
+}
