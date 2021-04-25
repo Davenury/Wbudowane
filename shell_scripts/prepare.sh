@@ -7,7 +7,9 @@ sudo ifconfig hotspot 192.168.28.1
 sudo apt-get install libatlas-base-dev
 
 # Run hotspot
-#sudo hostapd hostapd.conf
+sudo hostapd hostapd.conf &
+echo $! > process.txt
 
 # Run dhcp server
-# sudo udhcpd -f
+ sudo udhcpd -f &
+ echo $! >> process.txt

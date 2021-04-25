@@ -1,6 +1,8 @@
 import json
+import os
 
-CONFIG_FILE = './configuration.json'
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+CONFIG_FILE = f'{ROOT_DIR}/configuration.json'
 
 
 def get_configuration() -> dict:
