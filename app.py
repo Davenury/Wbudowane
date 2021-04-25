@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 import json
-from configurationsGetter import get_configurations
+from configurationsGetter import get_configuration
 
 
 app = Flask(__name__)
@@ -8,7 +8,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    net, email, password = get_configurations()
+    config = get_configuration()
+    email = config["email"]
+    net = config["ssid"]
+    password = config["password"]
     return render_template("home.html", net=net, email=email)
 
 

@@ -11,5 +11,5 @@ sudo hostapd hostapd.conf &
 echo $! > process.txt
 
 # Run dhcp server
- sudo udhcpd -f &
- echo $! >> process.txt
+sudo udhcpd -f &
+echo $! >> process.txt
