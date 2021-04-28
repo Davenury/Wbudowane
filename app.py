@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect
 import json
 from configurationsGetter import get_configuration
 import subprocess
+from network.connect_to_wifi import update_wifi
 
 app = Flask(__name__)
 
@@ -9,7 +10,7 @@ app = Flask(__name__)
 def get_rid_of_signs(wifis):
     new_wifis = []
     for wifi in wifis:
-        new_wifis += wifi.replace("\"", "")
+        new_wifis.append(wifi.replace('"', ""))
     return new_wifis
 
 
