@@ -1,4 +1,4 @@
-
+#!/bin/sh
 
 
 cat process.txt | while read line
