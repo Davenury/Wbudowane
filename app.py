@@ -6,11 +6,17 @@ import subprocess
 app = Flask(__name__)
 
 
+def get_rid_of_signs(wifis):
+    new_wifis = []
+    for wifi in wifis:
+        new_wifis += wifi.replace("\"", "")
+    return new_wifis
+
+
 def read_wifi():
-    wifis = []
-    with open('network/wifi.txt') as f:
-        for line in f:
-            wifis += line
+    with open('wifi.txt') as f:
+        wifis = f.readlines()
+    wifis = get_rid_of_signs(wifis)
     return wifis
 
 
