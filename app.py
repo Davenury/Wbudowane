@@ -26,6 +26,7 @@ def configuration():
             }
             with open('./configuration.json', "w") as f:
                 json.dump(configurations, f)
+            update_wifi()
         return redirect('/')
     return render_template("configuration.html")
 
