@@ -13,9 +13,14 @@
             <label for="email">Email address</label>
             <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
           </div>
+
           <div class="form-group">
-            <label for="wifi">WiFi name</label>
-            <input type="text" name="wifi" class="form-control" id="wifi" aria-describedby="emailHelp" placeholder="Enter Wifi Name">
+            <label>WiFi name</label>
+            <select name="wifi" class="form-control">
+              {% for wifi in wifis %}
+                <option value={{wifi}}>{{ wifi }}</option>
+              {% endfor %}
+            </select>
           </div>
           <div class="form-group">
             <label for="password">WiFi Password</label>
