@@ -21,7 +21,7 @@ def configuration():
         if request.form.get('email') and request.form.get("wifi") and request.form.get("password"):
             configurations = {
                 'email': request.form.get("email"),
-                'net': request.form.get("wifi"),
+                'ssid': request.form.get("wifi"),
                 'password': request.form.get("password")
             }
             with open('./configuration.json', "w") as f:
