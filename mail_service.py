@@ -23,7 +23,7 @@ def make_photo():
             cv2.imwrite(IMG_NAME, frame)
 
 
-def send_message():
+def send_message(link: str):
     receiver = get_mail()
     make_photo()
     img_data = open(IMG_NAME, 'rb').read()
@@ -31,7 +31,7 @@ def send_message():
     msg['Subject'] = "Somebody want to talk"
     msg['From'] = f"Intercom <{sender}>"
     msg['To'] = receiver
-    text = MIMEText("test")
+    text = MIMEText(f'You can join the talk on intercom on <a href="{link}">link</a>', 'html')
     msg.attach(text)
     image = MIMEImage(img_data, name="photo")
     msg.attach(image)
@@ -45,7 +45,3 @@ def send_message():
     except smtplib.SMTPException as e:
         print("Error: unable to send email")
         print(e)
-
-
-if __name__ == "__main__":
-    send_message()

@@ -21,13 +21,19 @@ def run_bash_script(path: str):
 
 if __name__ == "__main__":
 
-    run_bash_script("/shell_scripts/prepare.sh")
-    sleep(60)
+    proper_connection = False
 
-    try:
-        if not internet_on():
-            # os.system("sudo wifi-connect -o 8001")
-            pass
-    except Exception:
-        print("Error")
-        exit(1)
+    while not proper_connection:
+        run_bash_script("/shell_scripts/prepare.sh")
+        sleep(120)
+        run_bash_script("/shell_scripts/end_hotspot.sh")
+
+        try:
+            if internet_on():
+                proper_connection = True
+            else:
+                sleep(10)
+
+        except Exception:
+            print("Error")
+            exit(1)

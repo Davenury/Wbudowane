@@ -9,11 +9,6 @@ def get_configuration() -> dict:
     with open(CONFIG_FILE) as f:
         return json.load(f)
 
-
-def get_id():
-    return get_configuration()["id"]
-
-
 def get_mail() -> str:
     return get_configuration()["email"]
 

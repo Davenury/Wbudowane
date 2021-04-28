@@ -3,3 +3,5 @@ local_auth.py
 photo.png
 .idea
 __pycache__
+*.pyc
+*.pyo
