@@ -6,3 +6,4 @@ do
   sudo kill $line
 done
 
+rm -f process.txt

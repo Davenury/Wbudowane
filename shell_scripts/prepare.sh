@@ -13,9 +13,9 @@ echo $! > process.txt
 
 
 # Run hotspot
-sudo hostapd hostapd.conf &
+sudo hostapd hostapd.conf > /dev/null &
 echo $! > process.txt
 
 # Run dhcp server
-sudo udhcpd -f &
+sudo udhcpd -f > /dev/null &
 echo $! >> process.txt
