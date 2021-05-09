@@ -41,7 +41,7 @@ def configuration():
             config['password'] = request.form.get("password")
         with open('./configuration.json', "w") as f:
             json.dump(config, f)
-            update_wifi()
+        update_wifi()
         return redirect('/')
     process = subprocess.Popen(['network/find_wifi.sh'])
     process.wait()
