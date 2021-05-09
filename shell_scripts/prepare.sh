@@ -8,13 +8,14 @@ sudo ifconfig hotspot 192.168.28.1
 sudo apt-get -y install libatlas-base-dev
 sudo apt-get -y install dnsmasq
 
-cd .. | flask run --host=192.168.28.1
+# Run flask app
+export FLASK_APP=../app.py
+sudo -E python3 -m flask run --host=192.168.28.1 &
 echo $! > process.txt
-
 
 # Run hotspot
-sudo hostapd hostapd.conf > /dev/null &
-echo $! > process.txt
+sudo hostapd ./shell_scripts/hostapd.conf > /dev/null &
+echo $! >> process.txt
 
 # Run dhcp server
 sudo udhcpd -f > /dev/null &

@@ -18,8 +18,8 @@ def internet_on():
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
-def run_bash_script(path: str):
-    subprocess.Popen(["/bin/sh", f"{ROOT_DIR}{path}"])
+def run_bash_script(path: str) -> subprocess.Popen:
+    return subprocess.Popen(["sudo","/bin/sh", f"{ROOT_DIR}{path}"])
 
 
 if __name__ == "__main__":
@@ -35,11 +35,13 @@ if __name__ == "__main__":
     button.when_pressed = proper_connection_to_true
 
     run_bash_script("/shell_scripts/prepare.sh")
+    print("Finished prepare")
     while not proper_connection:
         sleep(120)
-
+        proper_connection = run_bash_script("/network/check_connected_device.sh").stdout == ""
 
     run_bash_script("/shell_scripts/end_hotspot.sh")
+
     try:
         if internet_on():
             proper_connection = True
