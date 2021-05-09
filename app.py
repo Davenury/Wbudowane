@@ -33,14 +33,14 @@ def home():
 @app.route('/configuration', methods=['POST', 'GET'])
 def configuration():
     if request.method == "POST":
-        if request.form.get('email') and request.form.get("wifi") and request.form.get("password"):
-            configurations = {
-                'email': request.form.get("email"),
-                'ssid': request.form.get("wifi"),
-                'password': request.form.get("password")
-            }
-            with open('./configuration.json', "w") as f:
-                json.dump(configurations, f)
+        config = get_configuration()
+        if request.form.get('email'):
+            config["email"] = request.form.get("email")
+        if request.form.get("wifi") and request.form.get("password"):
+            config['ssid'] = request.form.get("wifi")
+            config['password'] = request.form.get("password")
+        with open('./configuration.json', "w") as f:
+            json.dump(config, f)
             update_wifi()
         return redirect('/')
     process = subprocess.Popen(['network/find_wifi.sh'])
