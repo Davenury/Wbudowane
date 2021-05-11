@@ -50,6 +50,7 @@ if __name__ == "__main__":
         print("Finished prepare")
         sleep(120)
         while not proper_connection:
+            print("Still in loop")
             sleep(10)
             proper_connection = run_bash_script("/network/check_connected_device.sh").stdout == ""
 
