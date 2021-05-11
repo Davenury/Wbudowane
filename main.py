@@ -29,6 +29,7 @@ if __name__ == "__main__":
 
     def proper_connection_to_true():
         global proper_connection
+        print("Click button")
         proper_connection = True
 
 
@@ -36,10 +37,12 @@ if __name__ == "__main__":
 
     run_bash_script("/shell_scripts/prepare.sh")
     print("Finished prepare")
+    sleep(120)
     while not proper_connection:
-        sleep(120)
+        sleep(10)
         proper_connection = run_bash_script("/network/check_connected_device.sh").stdout == ""
 
+    print("Close hotspot")
     run_bash_script("/shell_scripts/end_hotspot.sh")
 
     try:
