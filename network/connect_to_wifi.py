@@ -14,7 +14,7 @@ def update_wifi():
         update_config=1
         country=GB
         
-        network= {{
+        network={{
             ssid="{values['ssid']}"
             psk="{values['password']}"
         }}
