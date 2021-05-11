@@ -67,7 +67,7 @@ if __name__ == "__main__":
     run_bash_script("/shell_scripts/end_hotspot.sh")
 
     refresh_connection()
-    sleep(2)
+    sleep(5)
     button.when_pressed = button_action
     print("Changed button action")
     try:
