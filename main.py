@@ -52,7 +52,8 @@ if __name__ == "__main__":
         while not proper_connection:
             print("Still in loop")
             sleep(10)
-            proper_connection = run_bash_script("/network/check_connected_device.sh").stdout == ""
+            if not proper_connection:
+                proper_connection = run_bash_script("/network/check_connected_device.sh").stdout is None
 
         print("Close hotspot")
         run_bash_script("/shell_scripts/end_hotspot.sh")
