@@ -14,7 +14,7 @@ chrome_options.add_experimental_option("prefs", {"profile.default_content_settin
                                                  "profile.default_content_setting_values.notifications": 1
                                                  })
 
-driver = webdriver.Chrome(ChromeDriverManager(chrome_type=ChromeType.GOOGLE).install(), options=chrome_options)
+driver = webdriver.Chrome(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install(), options=chrome_options)
 
 
 def generate_string(length=20):
