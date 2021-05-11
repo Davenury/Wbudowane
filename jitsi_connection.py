@@ -16,7 +16,6 @@ chrome_options.add_experimental_option("prefs", {"profile.default_content_settin
                                                  })
 
 # driver = webdriver.Chrome(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install(), options=chrome_options)
-driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',options=chrome_options)
 
 def generate_string(length=20):
     letters = string.ascii_letters
@@ -28,6 +27,7 @@ def generate_link():
 
 
 def open_page(page_link: str = "http://google.co.uk"):
+    driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options)
     driver.get(page_link)
     inputElement = driver.find_element_by_class_name("field")
     inputElement.send_keys("Intercom")
