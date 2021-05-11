@@ -3,8 +3,11 @@ from configurationsGetter import get_configuration
 
 path_file = "/etc/wpa_supplicant/wpa_supplicant.conf"
 
-command_restart_wifi_configuration = "sudo wpa_cli -i wlan0 reconfigure"
 
+
+def refresh_connection():
+    command_restart_wifi_configuration = "sudo wpa_cli -i wlan0 reconfigure"
+    os.system(command_restart_wifi_configuration)
 
 def update_wifi():
     file = open(path_file, "w")
@@ -20,4 +23,4 @@ def update_wifi():
         }}
         """)
     file.close()
-    os.system(command_restart_wifi_configuration)
+    refresh_connection()
