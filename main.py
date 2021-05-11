@@ -6,8 +6,10 @@ from gpiozero import Button
 from jitsi_connection import generate_link, open_page
 from mail_service import send_message
 from network.connect_to_wifi import refresh_connection
+from multiprocessing import Process
 
 button = Button(26)
+callThread = None
 
 
 def internet_on():
@@ -26,10 +28,14 @@ def run_bash_script(path: str) -> subprocess.Popen:
 
 
 def button_action():
+    global callThread
+    if callThread is not None:
+        callThread.terminate()
     link = generate_link()
     send_message(link)
     print(f"Start meeting at {link}")
-    open_page(link)
+    callThread = Process(target=open_page, args=link)
+    callThread.start()
 
 
 if __name__ == "__main__":
@@ -61,13 +67,12 @@ if __name__ == "__main__":
     run_bash_script("/shell_scripts/end_hotspot.sh")
 
     refresh_connection()
-
+    sleep(2)
+    button.when_pressed = button_action
+    print("Changed button action")
     try:
-        sleep(10)
-        if internet_on():
-            button.when_pressed = button_action
-            while True:
-                sleep(120)
+        while internet_on():
+            sleep(2)
         else:
             print("Not proper wifi or connection with internet lost")
 
