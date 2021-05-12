@@ -16,6 +16,8 @@ chrome_options.add_experimental_option("prefs", {"profile.default_content_settin
                                                  "profile.default_content_setting_values.geolocation": 1,
                                                  "profile.default_content_setting_values.notifications": 1
                                                  })
+chrome_options.add_argument("use-fake-ui-for-media-stream")
+
 
 
 # driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
