@@ -17,7 +17,7 @@ chrome_options.add_experimental_option("prefs", {"profile.default_content_settin
                                                  "profile.default_content_setting_values.notifications": 1
                                                  })
 
-driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+# driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 def generate_string(length=20):
     letters = string.ascii_letters
     return ''.join(random.choice(letters) for i in range(length))
@@ -26,20 +26,10 @@ def generate_string(length=20):
 def generate_link():
     return f"https://meet.jit.si/{generate_string()}"
 
-def click_button(driver:webdriver.Chrome):
-    inputElement = driver.find_element_by_class_name("audio-preview")
-    inputElement = inputElement.find_element_by_class_name("toolbox-icon")
-    print(inputElement)
-    inputElement.click()
-    inputElement = driver.find_element_by_class_name("video-preview")
-    inputElement = inputElement.find_element_by_class_name("toolbox-icon")
-    print(inputElement)
-    inputElement.click()
-
 
 
 def open_page(page_link: str = "http://google.co.uk"):
-    # driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options)
+    driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options)
     driver.get(page_link)
     inputElement = driver.find_element_by_class_name("field")
     inputElement.send_keys("Intercom")
