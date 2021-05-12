@@ -34,7 +34,11 @@ def button_action():
     link = generate_link()
     send_message(link)
     print(f"Start meeting at {link}")
-    callThread = Process(target=open_page, args=link)
+
+    def func():
+        open_page(link)
+
+    callThread = Process(target=func)
     callThread.start()
 
 
