@@ -36,12 +36,16 @@ def click_buttons(driver: webdriver.Chrome):
     button = camera.find_element_by_class_name("settings-button-container")
 
     action_chain = ActionChains(driver)
+    print(button.size)
     action = action_chain.move_to_element_with_offset(button, button.size["width"], 0)
     action.click().perform()
+
+    sleep(2)
 
     first_video = driver.find_element_by_class_name("video-preview").find_element_by_css_selector("*")
     action_chain = ActionChains(driver)
     action_chain.move_to_element(first_video).click().perform()
+
 
 def open_page(page_link: str = "http://google.co.uk"):
     driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options)
@@ -51,6 +55,7 @@ def open_page(page_link: str = "http://google.co.uk"):
 
     inputElement = driver.find_element_by_class_name("field")
     inputElement.send_keys("Intercom")
+
     inputElement.send_keys(Keys.ENTER)
 
     session_end = None
