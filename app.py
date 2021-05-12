@@ -43,7 +43,7 @@ def configuration():
             json.dump(config, f)
         update_wifi()
         return redirect('/')
-    process = subprocess.Popen(['network/find_wifi.sh'])
+    process = subprocess.Popen(['network2/find_wifi.sh'])
     process.wait()
     wifis = read_wifi()
     return render_template("configuration.html", wifis=wifis, len=len(wifis))
