@@ -45,7 +45,10 @@ def open_page(page_link: str = "http://google.co.uk"):
     inputElement.send_keys("Intercom")
     inputElement.send_keys(Keys.ENTER)
 
+    print("Before button clicked")
+    sleep(5)
     click_buttons(driver)
+    print("Button clicked")
 
     session_end = None
 
