@@ -46,13 +46,13 @@ def click_buttons(driver: webdriver.Chrome):
 def open_page(page_link: str = "http://google.co.uk"):
     driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options)
     driver.get(page_link)
+
+    click_buttons(driver)
+
     inputElement = driver.find_element_by_class_name("field")
     inputElement.send_keys("Intercom")
     inputElement.send_keys(Keys.ENTER)
 
-    sleep(3)
-
-    click_buttons(driver)
     session_end = None
 
     while session_end is None:
