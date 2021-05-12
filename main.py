@@ -74,7 +74,7 @@ if __name__ == "__main__":
     print("Changed button action")
     try:
         while internet_on():
-            sleep(2)
+            sleep(10)
         else:
             print("Not proper wifi or connection with internet lost")
 
