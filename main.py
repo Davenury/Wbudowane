@@ -55,11 +55,13 @@ if __name__ == "__main__":
 
     run_bash_script("/shell_scripts/prepare.sh")
     print("Finished prepare")
-    sleep(120)
+    counter = 120 / 5
     while not proper_connection:
         print(f"Still in loop: {proper_connection}")
-        sleep(10)
-        if not proper_connection:
+        sleep(5)
+        if counter > 0:
+            counter -= 1
+        elif not proper_connection:
             result = run_bash_script("/network/check_connected_device.sh").stdout
             proper_connection = result is None
 
@@ -67,7 +69,7 @@ if __name__ == "__main__":
     run_bash_script("/shell_scripts/end_hotspot.sh")
 
     refresh_connection()
-    sleep(5)
+    sleep(10)
     button.when_pressed = button_action
     print("Changed button action")
     try:

@@ -1,5 +1,5 @@
 import os
-from configurationsGetter import get_configuration
+from network.configurationsGetter import get_configuration
 
 path_file = "/etc/wpa_supplicant/wpa_supplicant.conf"
 
