@@ -16,7 +16,7 @@ chrome_options.add_experimental_option("prefs", {"profile.default_content_settin
                                                  "profile.default_content_setting_values.geolocation": 1,
                                                  "profile.default_content_setting_values.notifications": 1
                                                  })
-chrome_options.add_argument("use-fake-ui-for-media-stream")
+chrome_options.add_argument("--use-fake-ui-for-media-stream=1")
 
 
 
@@ -49,7 +49,7 @@ def open_page(page_link: str = "http://google.co.uk"):
 
     print("Before button clicked")
     sleep(5)
-    click_buttons(driver)
+    # click_buttons(driver)
     print("Button clicked")
 
     session_end = None
@@ -66,4 +66,4 @@ def open_page(page_link: str = "http://google.co.uk"):
 
 
 if __name__ == "__main__":
-    open_page("https://meet.jit.si/abcd")
+    open_page("https://meet.jit.si/abcd1234abcd")
