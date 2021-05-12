@@ -19,7 +19,7 @@ chrome_options.add_experimental_option("prefs", {"profile.default_content_settin
                                                  })
 chrome_options.add_argument("--use-fake-ui-for-media-stream=1")
 
-driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+# driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 
 
 def generate_string(length=20):
@@ -32,7 +32,6 @@ def generate_link():
 
 
 def click_buttons(driver: webdriver.Chrome):
-    driver.find_element_by_id("sharedVideo").click()
     camera = driver.find_element_by_class_name("video-preview")
     button = camera.find_element_by_class_name("settings-button-container")
 
@@ -40,15 +39,18 @@ def click_buttons(driver: webdriver.Chrome):
     action = action_chain.move_to_element_with_offset(button, button.size["width"], 0)
     action.click().perform()
 
-    driver.find_element_by_class_name("video-preview").find_element_by_css_selector("*").click()
-
+    first_video = driver.find_element_by_class_name("video-preview").find_element_by_css_selector("*")
+    action_chain = ActionChains(driver)
+    action_chain.move_to_element(first_video).click().perform()
 
 def open_page(page_link: str = "http://google.co.uk"):
-    # driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options)
+    driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options)
     driver.get(page_link)
     inputElement = driver.find_element_by_class_name("field")
     inputElement.send_keys("Intercom")
     inputElement.send_keys(Keys.ENTER)
+
+    sleep(3)
 
     click_buttons(driver)
     session_end = None
