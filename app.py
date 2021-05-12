@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 import json
-from network.configurationsGetter import get_configuration
+from configurationsGetter import get_configuration
 import subprocess
 from network.connect_to_wifi import update_wifi
 
