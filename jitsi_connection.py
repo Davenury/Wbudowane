@@ -8,7 +8,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.utils import ChromeType
 
 chrome_options = webdriver.ChromeOptions()
-# chrome_options.add_argument("headless")
+chrome_options.add_argument("headless")
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_experimental_option("prefs", {"profile.default_content_setting_values.media_stream_mic": 1,
@@ -17,7 +17,10 @@ chrome_options.add_experimental_option("prefs", {"profile.default_content_settin
                                                  "profile.default_content_setting_values.notifications": 1
                                                  })
 
+
 # driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+
+
 def generate_string(length=20):
     letters = string.ascii_letters
     return ''.join(random.choice(letters) for i in range(length))
@@ -27,6 +30,13 @@ def generate_link():
     return f"https://meet.jit.si/{generate_string()}"
 
 
+def click_buttons(driver: webdriver.Chrome):
+    driver.execute_script(
+        '''const array = document.getElementsByClassName("toolbox-button");
+        array[0].setAttribute('aria-pressed',true)
+        array[1].setAttribute('aria-pressed',true)
+    ''')
+
 
 def open_page(page_link: str = "http://google.co.uk"):
     driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options)
@@ -35,6 +45,7 @@ def open_page(page_link: str = "http://google.co.uk"):
     inputElement.send_keys("Intercom")
     inputElement.send_keys(Keys.ENTER)
 
+    click_buttons(driver)
 
     session_end = None
 
