@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import NoSuchElementException
 from time import sleep
 import random
@@ -8,7 +9,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.utils import ChromeType
 
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument("headless")
+# chrome_options.add_argument("headless")
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_experimental_option("prefs", {"profile.default_content_setting_values.media_stream_mic": 1,
@@ -18,9 +19,7 @@ chrome_options.add_experimental_option("prefs", {"profile.default_content_settin
                                                  })
 chrome_options.add_argument("--use-fake-ui-for-media-stream=1")
 
-
-
-# driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 
 
 def generate_string(length=20):
@@ -33,25 +32,25 @@ def generate_link():
 
 
 def click_buttons(driver: webdriver.Chrome):
-    driver.execute_script(
-        '''const array = document.getElementsByClassName("toolbox-button");
-        array[0].setAttribute('aria-pressed',true)
-        array[1].setAttribute('aria-pressed',true)
-    ''')
+    driver.find_element_by_id("sharedVideo").click()
+    camera = driver.find_element_by_class_name("video-preview")
+    button = camera.find_element_by_class_name("settings-button-container")
+
+    action_chain = ActionChains(driver)
+    action = action_chain.move_to_element_with_offset(button, button.size["width"], 0)
+    action.click().perform()
+
+    driver.find_element_by_class_name("video-preview").find_element_by_css_selector("*").click()
 
 
 def open_page(page_link: str = "http://google.co.uk"):
-    driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options)
+    # driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options)
     driver.get(page_link)
     inputElement = driver.find_element_by_class_name("field")
     inputElement.send_keys("Intercom")
     inputElement.send_keys(Keys.ENTER)
 
-    print("Before button clicked")
-    sleep(5)
-    # click_buttons(driver)
-    print("Button clicked")
-
+    click_buttons(driver)
     session_end = None
 
     while session_end is None:
