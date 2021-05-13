@@ -19,6 +19,7 @@ chrome_options.add_experimental_option("prefs", {"profile.default_content_settin
                                                  })
 chrome_options.add_argument("--use-fake-ui-for-media-stream=1")
 
+
 # driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 
 
@@ -50,8 +51,11 @@ def click_buttons(driver: webdriver.Chrome):
     action_chain.move_to_element(camera).click().perform()
 
 
-def open_page(page_link: str = "http://google.co.uk"):
-    driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options)
+def get_driver():
+    return webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options)
+
+
+def open_page(page_link: str, driver: webdriver.Chrome):
     driver.get(page_link)
 
     inputElement = driver.find_element_by_class_name("field")
@@ -76,4 +80,4 @@ def open_page(page_link: str = "http://google.co.uk"):
 
 
 if __name__ == "__main__":
-    open_page("https://meet.jit.si/abcd1234abcd")
+    open_page("https://meet.jit.si/abcd1234abcd", get_driver())
