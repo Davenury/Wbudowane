@@ -3,13 +3,14 @@ import subprocess
 from urllib.request import urlopen
 from time import sleep
 from gpiozero import Button
-from jitsi_connection import generate_link, open_page
+from jitsi_connection import generate_link, open_page, get_driver
 from mail_service import send_message
 from network.connect_to_wifi import refresh_connection
 from multiprocessing import Process
 
 button = Button(26)
 callThread = None
+driver = None
 
 
 def internet_on():
@@ -29,14 +30,20 @@ def run_bash_script(path: str) -> subprocess.Popen:
 
 def button_action():
     global callThread
+    global driver
+    if driver is not None:
+        driver.close()
+    driver = get_driver()
+
     if callThread is not None:
         callThread.kill()
+
     link = generate_link()
     send_message(link)
     print(f"Start meeting at {link}")
 
     def func():
-        open_page(link)
+        open_page(link, driver)
 
     callThread = Process(target=func)
     callThread.start()
