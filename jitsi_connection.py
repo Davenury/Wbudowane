@@ -42,7 +42,7 @@ def click_buttons(driver: webdriver.Chrome):
 
     sleep(2)
 
-    first_video = driver.find_element_by_class_name("video-preview-overlay").find_element_by_css_selector("*")
+    first_video = driver.find_element_by_class_name("video-preview-overlay")
     action_chain = ActionChains(driver)
     action_chain.move_to_element(first_video).click().perform()
 
@@ -54,12 +54,13 @@ def open_page(page_link: str = "http://google.co.uk"):
     driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options)
     driver.get(page_link)
 
-    click_buttons(driver)
-
     inputElement = driver.find_element_by_class_name("field")
     inputElement.send_keys("Intercom")
 
     inputElement.send_keys(Keys.ENTER)
+
+    sleep(5)
+    click_buttons(driver)
 
     session_end = None
 
