@@ -66,7 +66,7 @@ if __name__ == "__main__":
         if counter > 0:
             counter -= 1
         elif not proper_connection:
-            result = run_bash_script("network/check_connected_device.sh").stdout
+            result = run_bash_script("/network/check_connected_device.sh").stdout
             proper_connection = result is None
 
     print("Close hotspot")
