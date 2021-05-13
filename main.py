@@ -30,7 +30,7 @@ def run_bash_script(path: str) -> subprocess.Popen:
 def button_action():
     global callThread
     if callThread is not None:
-        callThread.terminate()
+        callThread.kill()
     link = generate_link()
     send_message(link)
     print(f"Start meeting at {link}")
