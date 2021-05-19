@@ -15,19 +15,20 @@
           </div>
 
           <div class="form-group">
-            <label>WiFi name</label>
-            <select name="wifi" class="form-control">
+            <label>WiFi name</label><br/>
+            <input name="wifi" type="text" list="wifi" class="form-control"/>
+            <datalist id="wifi">
               {% for wifi in wifis %}
                 <option value={{wifi}}>{{ wifi }}</option>
               {% endfor %}
-            </select>
+            </datalist>
           </div>
           <div class="form-group">
             <label for="password">WiFi Password</label>
             <input type="password" class="form-control" id="password" placeholder="Password" name="password">
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
-            <a href="home"><button class="btn btn-danger">Return</button></a>
+            <a href="home.html"><button class="btn btn-danger">Return</button></a>
         </form>
     </div>
 
