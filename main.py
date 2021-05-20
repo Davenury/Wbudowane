@@ -38,7 +38,8 @@ def button_action():
     print(f"Start meeting at {link}")
 
     def func():
-        os.system(f'''python3 -c "import jitsi_connection;jitsi_connection.open_page('{link}')"''')
+        command = f'''python3 -c "import jitsi_connection;jitsi_connection.open_page('{link}')" '''
+        os.system(f'''su - pi -c "{command}"''')
 
     callThread = Process(target=func)
     callThread.start()
