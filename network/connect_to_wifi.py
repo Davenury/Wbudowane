@@ -7,7 +7,7 @@ path_file = "/etc/wpa_supplicant/wpa_supplicant.conf"
 def refresh_connection():
     command_restart_wifi_configuration = "sudo wpa_cli -i wlan0 reconfigure"
     os.system(command_restart_wifi_configuration)
-    os.system("ping -c10 8.8.4.4")
+    os.system("ping -c4 facebook.com")
 
 
 def update_wifi():

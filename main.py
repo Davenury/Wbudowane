@@ -81,6 +81,7 @@ if __name__ == "__main__":
 
     refresh_connection()
     sleep(10)
+    os.system("ping -c4 google.com")
     button.when_pressed = button_action
     print("Changed button action")
     try:
