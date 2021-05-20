@@ -3,7 +3,7 @@
 #Prepare virtual interface
 sudo iw phy phy0 interface add hotspot type __ap
 sudo ifconfig wlan0 down
-sudo ifconfig hotspot 192.168.28.1
+sudo ifconfig hotspot 192.168.28.1 up
 
 # Install packages needed for taking photos with python-opencv
 sudo apt-get -y install libatlas-base-dev
