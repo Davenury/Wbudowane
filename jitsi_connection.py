@@ -96,6 +96,6 @@ def open_page(page_link: str, driver: webdriver.Chrome = get_driver()):
 
 
 if __name__ == "__main__":
-    print("url")
     url = "https://meet.jit.si/abcd1234abcd" if len(sys.argv) == 1 else sys.argv[1]
+    print(f"url:{url}")
     open_page(url, get_driver())
