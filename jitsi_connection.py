@@ -7,6 +7,7 @@ import random
 import string
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.utils import ChromeType
+import sys
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("headless")
@@ -21,7 +22,6 @@ chrome_options.add_experimental_option("prefs", {"profile.default_content_settin
 chrome_options.add_argument("--use-fake-ui-for-media-stream=1")
 
 
-
 def generate_string(length=20):
     letters = string.ascii_letters
     return ''.join(random.choice(letters) for i in range(length))
@@ -32,7 +32,6 @@ def generate_link():
 
 
 def click_buttons(driver: webdriver.Chrome):
-
     camera = driver.find_element_by_class_name("video-preview")
     button = camera.find_element_by_class_name("settings-button-container")
 
@@ -97,4 +96,6 @@ def open_page(page_link: str, driver: webdriver.Chrome = get_driver()):
 
 
 if __name__ == "__main__":
-    open_page("https://meet.jit.si/abcd1234abcd", get_driver())
+    print("url")
+    url = "https://meet.jit.si/abcd1234abcd" if len(sys.argv) == 1 else sys.argv[1]
+    open_page(url, get_driver())
