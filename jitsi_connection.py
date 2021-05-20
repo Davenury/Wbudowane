@@ -19,9 +19,8 @@ chrome_options.add_experimental_option("prefs", {"profile.default_content_settin
                                                  "profile.default_content_setting_values.notifications": 1
                                                  })
 chrome_options.add_argument("--use-fake-ui-for-media-stream=1")
+chrome_options.add_argument("--use-fake-device-for-media-stream=1")
 
-
-# driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 
 
 def generate_string(length=20):
@@ -49,14 +48,15 @@ def click_buttons(driver: webdriver.Chrome):
     action_chain = ActionChains(driver)
     action_chain.move_to_element(first_video).click().perform()
 
-    action_chain = ActionChains(driver)
-    action_chain.move_to_element(camera).click().perform()
+    # action_chain = ActionChains(driver)
+    # action_chain.move_to_element(camera).click().perform()
 
     action_chain = ActionChains(driver)
     action_chain.move_to_element(micro).click().perform()
 
 
 def get_driver():
+    # return webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
     return webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options)
 
 
