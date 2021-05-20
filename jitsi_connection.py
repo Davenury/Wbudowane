@@ -57,7 +57,8 @@ def click_buttons(driver: webdriver.Chrome):
 
     sleep(2)
 
-    first_audio = driver.find_element_by_class_name("audio-preview-microphone")
+    first_audio = driver.find_elements_by_class_name("audio-preview-microphone")
+    print(f"How many: {len(first_audio)}")
     action_chain = ActionChains(driver)
     action_chain.move_to_element(first_audio).click().perform()
 
