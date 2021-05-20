@@ -72,7 +72,7 @@ def get_driver():
     return webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options)
 
 
-def open_page(page_link: str, driver: webdriver.Chrome):
+def open_page(page_link: str, driver: webdriver.Chrome = get_driver()):
     driver.get(page_link)
 
     inputElement = driver.find_element_by_class_name("field")

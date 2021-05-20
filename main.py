@@ -10,7 +10,6 @@ from multiprocessing import Process
 
 button = Button(26)
 callThread = None
-driver = None
 
 
 def internet_on():
@@ -30,10 +29,6 @@ def run_bash_script(path: str) -> subprocess.Popen:
 
 def button_action():
     global callThread
-    global driver
-    if driver is not None:
-        driver.close()
-    driver = get_driver()
 
     if callThread is not None:
         callThread.kill()
@@ -43,7 +38,7 @@ def button_action():
     print(f"Start meeting at {link}")
 
     def func():
-        open_page(link, driver)
+        subprocess.Popen(["python3",f"import jitsi_connection;jitsi_connection.open_page({link})"])
 
     callThread = Process(target=func)
     callThread.start()
