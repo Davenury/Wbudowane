@@ -19,7 +19,6 @@ chrome_options.add_experimental_option("prefs", {"profile.default_content_settin
                                                  "profile.default_content_setting_values.notifications": 1
                                                  })
 chrome_options.add_argument("--use-fake-ui-for-media-stream=1")
-chrome_options.add_argument("--use-fake-device-for-media-stream=1")
 
 
 
@@ -33,7 +32,7 @@ def generate_link():
 
 
 def click_buttons(driver: webdriver.Chrome):
-    micro = driver.find_element_by_class_name("video-preview")
+    micro = driver.find_element_by_class_name("audio-preview")
     camera = driver.find_element_by_class_name("video-preview")
     button = camera.find_element_by_class_name("settings-button-container")
 
