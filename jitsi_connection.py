@@ -54,14 +54,15 @@ def click_buttons(driver: webdriver.Chrome):
     action_chain = ActionChains(driver)
     action = action_chain.move_to_element_with_offset(button, button.size["width"], 0)
     action.click().perform()
-    # action_chain = ActionChains(driver)
-    # action_chain.move_to_element(micro).click().perform()
+
+    sleep(2)
 
     first_audio = driver.find_element_by_class_name("audio-preview-microphone")
     action_chain = ActionChains(driver)
     action_chain.move_to_element(first_audio).click().perform()
 
-
+    # action_chain = ActionChains(driver)
+    # action_chain.move_to_element(micro).click().perform()
 
 
 def get_driver():
