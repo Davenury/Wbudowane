@@ -57,6 +57,9 @@ def click_buttons(driver: webdriver.Chrome):
 
     sleep(2)
 
+    how_many_elements = driver.find_element_by_class_name("audio-preview-content")
+    print(f"How many in content: {how_many_elements.find_elements_by_css_selector('*')}")
+
     first_audio = driver.find_elements_by_class_name("audio-preview-microphone")
     print(f"How many: {len(first_audio)}")
     action_chain = ActionChains(driver)
