@@ -3,8 +3,10 @@ import json
 from configurationsGetter import get_configuration
 import subprocess
 from network.connect_to_wifi import update_wifi
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
+bootstrap = Bootstrap(app)
 
 
 def get_rid_of_signs(wifis):
