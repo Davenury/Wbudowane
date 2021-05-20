@@ -50,23 +50,21 @@ def click_buttons(driver: webdriver.Chrome):
     # action_chain.move_to_element(camera).click().perform()
 
     micro = driver.find_element_by_class_name("audio-preview")
-    button = micro.find_element_by_class_name("settings-button-container")
-    action_chain = ActionChains(driver)
-    action = action_chain.move_to_element_with_offset(button, button.size["width"], 0)
-    action.click().perform()
-
-    sleep(2)
-
-    how_many_elements = driver.find_element_by_class_name("audio-preview-content")
-    print(f"How many in content: {how_many_elements.find_elements_by_css_selector('*')}")
-
-    first_audio = driver.find_elements_by_class_name("audio-preview-microphone")
-    print(f"How many: {len(first_audio)}")
-    action_chain = ActionChains(driver)
-    action_chain.move_to_element(first_audio).click().perform()
-
+    # button = micro.find_element_by_class_name("settings-button-container")
     # action_chain = ActionChains(driver)
-    # action_chain.move_to_element(micro).click().perform()
+    # action = action_chain.move_to_element_with_offset(button, button.size["width"], 0)
+    # action.click().perform()
+    # sleep(2)
+    # how_many_elements = driver.find_element_by_class_name("audio-preview-content")
+    # print(f"How many in content: {how_many_elements.find_elements_by_css_selector('*')}")
+    #
+    # first_audio = driver.find_elements_by_class_name("audio-preview-microphone")
+    # print(f"How many: {len(first_audio)}")
+    # action_chain = ActionChains(driver)
+    # action_chain.move_to_element(first_audio).click().perform()
+
+    action_chain = ActionChains(driver)
+    action_chain.move_to_element(micro).click().perform()
 
 
 def get_driver():
