@@ -33,6 +33,7 @@ def generate_link():
 
 
 def click_buttons(driver: webdriver.Chrome):
+    micro = driver.find_element_by_class_name("video-preview")
     camera = driver.find_element_by_class_name("video-preview")
     button = camera.find_element_by_class_name("settings-button-container")
 
@@ -49,6 +50,9 @@ def click_buttons(driver: webdriver.Chrome):
 
     action_chain = ActionChains(driver)
     action_chain.move_to_element(camera).click().perform()
+
+    action_chain = ActionChains(driver)
+    action_chain.move_to_element(micro).click().perform()
 
 
 def get_driver():
