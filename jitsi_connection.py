@@ -32,12 +32,11 @@ def generate_link():
 
 
 def click_buttons(driver: webdriver.Chrome):
-    micro = driver.find_element_by_class_name("audio-preview")
+
     camera = driver.find_element_by_class_name("video-preview")
     button = camera.find_element_by_class_name("settings-button-container")
 
     action_chain = ActionChains(driver)
-    print(button.size)
     action = action_chain.move_to_element_with_offset(button, button.size["width"], 0)
     action.click().perform()
 
@@ -50,8 +49,19 @@ def click_buttons(driver: webdriver.Chrome):
     # action_chain = ActionChains(driver)
     # action_chain.move_to_element(camera).click().perform()
 
+    micro = driver.find_element_by_class_name("audio-preview")
+    button = micro.find_element_by_class_name("settings-button-container")
     action_chain = ActionChains(driver)
-    action_chain.move_to_element(micro).click().perform()
+    action = action_chain.move_to_element_with_offset(button, button.size["width"], 0)
+    action.click().perform()
+    # action_chain = ActionChains(driver)
+    # action_chain.move_to_element(micro).click().perform()
+
+    first_audio = driver.find_element_by_class_name("audio-preview-microphone")
+    action_chain = ActionChains(driver)
+    action_chain.move_to_element(first_audio).click().perform()
+
+
 
 
 def get_driver():
