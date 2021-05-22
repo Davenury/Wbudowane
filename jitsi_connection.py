@@ -19,7 +19,9 @@ chrome_options.add_experimental_option("prefs", {"profile.default_content_settin
                                                  "profile.default_content_setting_values.geolocation": 1,
                                                  "profile.default_content_setting_values.notifications": 1,
                                                  "hardware.audio_capture_enabled":True,
-                                                 "hardware.video_capture_enabled":True
+                                                 "hardware.video_capture_enabled":True,
+                                                 "hardware.audio_capture_allowed_urls": ["https://meet.jit.si"],
+                                                 "hardware.video_capture_allowed_urls": ["https://meet.jit.si"]
                                                  })
 chrome_options.add_argument("--use-fake-ui-for-media-stream=1")
 
