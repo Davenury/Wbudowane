@@ -19,9 +19,7 @@ chrome_options.add_experimental_option("prefs", {"profile.default_content_settin
                                                  "profile.default_content_setting_values.geolocation": 1,
                                                  "profile.default_content_setting_values.notifications": 1,
                                                  "hardware.audio_capture_enabled":True,
-                                                 "hardware.video_capture_enabled":True,
-                                                 "hardware.audio_capture_allowed_urls": ["https://meet.jit.si"],
-                                                 "hardware.video_capture_allowed_urls": ["https://meet.jit.si"]
+                                                 "hardware.video_capture_enabled":True
                                                  })
 chrome_options.add_argument("--use-fake-ui-for-media-stream=1")
 
@@ -53,13 +51,13 @@ def click_buttons(driver: webdriver.Chrome):
     # action_chain.move_to_element(camera).click().perform()
 
     micro = driver.find_element_by_class_name("audio-preview")
-    # button = micro.find_element_by_class_name("settings-button-container")
-    # action_chain = ActionChains(driver)
-    # action = action_chain.move_to_element_with_offset(button, button.size["width"], 0)
-    # action.click().perform()
-    # sleep(2)
-    # how_many_elements = driver.find_element_by_class_name("audio-preview-content")
-    # print(f"How many in content: {how_many_elements.find_elements_by_css_selector('*')}")
+    button = micro.find_element_by_class_name("settings-button-container")
+    action_chain = ActionChains(driver)
+    action = action_chain.move_to_element_with_offset(button, button.size["width"], 0)
+    action.click().perform()
+    sleep(2)
+    how_many_elements = driver.find_element_by_class_name("audio-preview-content")
+    print(how_many_elements.get_attribute("innerHTML"))
     #
     # first_audio = driver.find_elements_by_class_name("audio-preview-microphone")
     # print(f"How many: {len(first_audio)}")
