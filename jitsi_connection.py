@@ -56,7 +56,7 @@ def click_buttons(driver: webdriver.Chrome):
     action = action_chain.move_to_element_with_offset(button, button.size["width"], 0)
     action.click().perform()
     sleep(2)
-    how_many_elements = driver.find_element_by_class_name("audio-preview-content")
+    how_many_elements = micro.find_element_by_class_name("audio-preview-content")
     print(how_many_elements.get_attribute("innerHTML"))
     #
     # first_audio = driver.find_elements_by_class_name("audio-preview-microphone")
